@@ -16,4 +16,4 @@ def trans(x):
         list.append(x % 2)
         x >>= 1
     return list[::-1]
-print(trans(50))
+print(trans(11))
