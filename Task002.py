@@ -12,13 +12,29 @@
 # [16, 16, 4]
 
 
-from random import sample
-from typing import List
-def find_num(q):                                 
-    arr = sample(range(1, q * 2), q)   # sample выбирает из обьекта(кортеж, список и т.д) буковка q выбирает цифру от одного до q*2 т.е в два раза больше, 
-    print(arr)
-list = []
-for i in range(len(arr)):
-    list.append(i[0] * i[-1], i[1] * i[2])
-    return list 
-print(find_num(5), List)
+from random import sample                                                    
+
+def list_rand_nums(count):                                                # Функция создания списка
+    if count < 0:
+        print("отрицательное число")
+        return[]
+
+    list_nums = sample(range(1, count * 2), count)
+    return list_nums
+
+def prod_pairs(list_nums: list):
+    res_list = []
+    len_list = len(list_nums)
+
+    for k in range(len_list // 2):                                        # Длина списка поделена на пополам // Целочисленное деление, (RANGE не работает с дробями)
+        res_list.append(list_nums[k] * list_nums[len_list - k - 1])       # -k движение с двух сторон, -1 ставим всегда
+
+    if len_list % 2:                                                      # Сюда мы попадаем когда у нас что то отличное от истины, если кратно, если 0. мы сюда не попадем
+        res_list.append(list_nums[len_list // 2])
+    return res_list
+
+all_list =  list_rand_nums(int(input("Введите цифру")))
+print(all_list)
+print(prod_pairs(all_list))
+
+
